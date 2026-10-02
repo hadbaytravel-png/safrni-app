@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "684047874573",
+    "project_id": "safrni-70d71",
+    "storage_bucket": "safrni-70d71.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:684047874573:android:f0693065a1397b20cdf344",
+        "android_client_info": {
+          "package_name": "com.example.safrni_v3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4qGbDFTDvA0rmLhhWvni819cBcAr3YH0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
