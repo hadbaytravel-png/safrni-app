@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -55,15 +54,15 @@ class SafrniApp extends StatelessWidget {
     return MaterialApp(
       title: 'Safrni Premium',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF00897B),
-          primary: const Color(0xFF00897B),
-        ),
-        fontFamily: 'Arial',
-      ),
-      home: const MainScreen(),
+    theme: ThemeData(
+  useMaterial3: true,
+  -- هذا هو السطر السحري للخط
+  colorScheme: ColorScheme.fromSeed(
+    seedColor: const Color(0xFF00897B),
+    primary: const Color(0xFF00897B),
+  ),
+),
+     home: const Splashscreen(),
     );
   }
 }
@@ -1360,6 +1359,70 @@ class MyTicketsScreen extends StatelessWidget {
             },
           );
         },
+      ),
+    );
+  }
+}
+// ==========================================
+// شاشة البداية المتحركة (Splash Screen) - النسخة الآمنة
+// ==========================================
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 3), () {
+      if (!mounted) return;
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const MainScreen()),
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFF00897B),
+      body: Center(
+        child: TweenAnimationBuilder(
+          tween: Tween<double>(begin: 0.0, end: 1.0),
+          duration: const Duration(milliseconds: 1500),
+          curve: Curves.easeInOut, // منحنى آمن (بدون ارتداد)
+          builder: (context, double value, child) {
+            return Opacity(
+              opacity: value.clamp(0.0, 1.0), // حماية من الخروج عن النطاق
+              child: child,
+            );
+          },
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.directions_bus, size: 120, color: Colors.white),
+              const SizedBox(height: 20),
+              Text(
+                'حدباي',
+                style: TextStyle(
+                  fontSize: 50,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontFamily: GoogleFonts.cairo().fontFamily,
+                ),
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                'HADBAY BUS',
+                style: TextStyle(fontSize: 16, color: Colors.white70, letterSpacing: 4),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
