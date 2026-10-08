@@ -1,33 +1,17 @@
-name: safrni_v3
-description: "A new Flutter project."
-publish_to: 'none'
-version: 1.0.0+1
-
-environment:
-  sdk: '>=3.0.0 <4.0.0'
-
-dependencies:
-  flutter:
-    sdk: flutter
-  firebase_core: ^2.24.2
-  cloud_firestore: ^4.14.0
-  flutter_launcher_icons: ^0.14.4
-  firebase_auth: ^4.16.0
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^3.0.0
-
-flutter:
-  uses-material-design: true
-
-  assets:
-    - assets/logo.png
-    - assets/bus.png
-
-flutter_launcher_icons:
-  android: "launcher_icon"
-  ios: true
-  image_path: "assets/icon.png"
-  min_sdk_android: 21
+workflows:
+  android-workflow:
+    name: Android APK Build
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      java: 17
+    scripts:
+      - name: Get Flutter packages
+        script: |
+          flutter packages pub get
+      - name: Build APK
+        script: |
+          flutter build apk --debug
+    artifacts:
+      - build/app/outputs/flutter-apk/*.apk
