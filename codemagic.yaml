@@ -7,9 +7,6 @@ workflows:
       flutter: stable
       java: 17
     scripts:
-      - name: Create google-services.json
-        script: |
-          echo "$GOOGLE_SERVICES_JSON" > $CM_BUILD_DIR/android/app/google-services.json
       - name: Get Flutter packages
         script: |
           flutter packages pub get
