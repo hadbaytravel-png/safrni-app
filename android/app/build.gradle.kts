@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.safrni_v3"
-    compileSdk = 36
+    compileSdk = 35
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -15,7 +15,7 @@ android {
     defaultConfig {
         applicationId = "com.example.safrni_v3"
         minSdk = flutter.minSdkVersion
-        targetSdk = 36
+        targetSdk = 35
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
