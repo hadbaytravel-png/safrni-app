@@ -73,7 +73,7 @@ class SafrniApp extends StatelessWidget {
           ),
         ),
       ),
-      home: AuthScreen(),
+      home: SplashScreen(),
     );
   }
 }
